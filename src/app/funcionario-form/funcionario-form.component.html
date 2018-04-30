@@ -1,0 +1,20 @@
+
+  <h5>{{titulo}}</h5>
+
+    <div class="form-group">
+      <label class="col-form-label">Nome do vendedor :</label>
+      <input type="text" class="form-control" [(ngModel)]="nomeVendedor"/>
+    </div>
+
+    <button class="btn btn-primary" (click)="adicionarVendedor()" [disabled]="nomeVendedor.length == 0">Clique cadastrar novo vendedor</button>
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-3" *ngFor="let vendedor of vendedores">
+          <div class="card" style="margin-bottom: 20px;">
+              <img class="card-img-top" src="https://randomuser.me/api/portraits/women/{{vendedor.id}}.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{vendedor.nomeVendedor}}</h4>
+              </div>
+            </div>
+      </div>
+    </div>

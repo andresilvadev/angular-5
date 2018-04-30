@@ -1,0 +1,19 @@
+<h5>{{titulo}}</h5>
+
+  <div class="form-group">
+    <label class="col-form-label">{{nomeCliente}}</label>
+    <input type="text" class="form-control" [(ngModel)]="nomeCliente"/>
+  </div>
+
+  <button class="btn btn-primary" (click)="adicionarCliente()" [disabled]="nomeCliente.length == 0">Clique cadastrar novo cliente</button>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-3" *ngFor="let cliente of clientes">
+        <div class="card" style="margin-bottom: 20px;">
+            <img class="card-img-top" src="https://randomuser.me/api/portraits/women/{{cliente.id}}.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{cliente.nomeCliente}}</h4>
+            </div>
+          </div>
+    </div>
+  </div>

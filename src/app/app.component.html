@@ -1,0 +1,118 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <br>
+  <h5>Seja bem vindo {{ nomecompleto }}! <small>aniversário em : {{ aniversario }}</small> </h5>
+  <hr>
+  <br>
+
+
+  <h5>Interpolação</h5>
+  <div class="alert alert-primary" role="alert">
+    Funcionário adicionado:
+    <strong>{{ nome }}</strong>
+    <p>Minha idade é: {{ getIdade() }}</p>
+  </div>
+  <button class="btn btn-primary btn-block" (click)="adicionarInterpolacao()">Clique para Interpolação com valor random idade</button>
+  <hr>
+  <br>
+
+
+  <h5>Event binding</h5>
+  <div class="form-group">
+    <label class="col-form-label">Mensagem :  {{ mensagem }}</label>
+    <input type="text" class="form-control" (input)="alterarMensagem($event)" [value]="mensagem"/>
+  </div>
+  <button class="btn btn-primary btn-block" (click)="adicionarMensagemDefault()">Clique ver o evento de mensagem default</button>
+  <hr>
+  <br>
+
+
+  <h5>Variável de referência</h5>
+  <div class="form-group">
+    <label class="col-form-label">Texto :  {{ texto }}</label>
+    <input type="text" class="form-control" #textoInput/>
+  </div>
+  <button class="btn btn-primary btn-block" (click)="adicionarTexto(textoInput)">Clique para adicionar o texto</button>
+  <hr>
+  <br>
+
+
+  <h5>Property binding</h5>
+  <div class="form-group">
+    <label class="col-form-label">Conteúdo :  {{ conteudo }}</label>
+    <input type="text" class="form-control" #conteudoInput (input)="habilitarConteudo($event)" [value]="conteudo"/>
+  </div>
+  <button class="btn btn-primary btn-block" (click)="alertConteudo(conteudoInput)" [disabled]="conteudo.length == 0">Clique para ver o alert property binding</button>
+  <hr>
+  <br>
+
+
+  <h5>Two-way data binding</h5>
+  <div class="form-group">
+    <label class="col-form-label">Referência : {{ referencia }}</label>
+    <input type="text" class="form-control" [(ngModel)]="referencia" />
+  </div>
+  <button class="btn btn-primary btn-block" (click)="adicionarReferencia()">Clique para realizar o two-way data binding</button>
+  <hr>
+  <br>
+
+
+  <h5>Exibindo condicionalmente com as diretivas ngIf</h5>
+  <div class="alert alert-success" role="alert" *ngIf="veiculoCadastrado">
+      Veículo cadastrado:
+      <strong>{{ nomeveiculo }}</strong>
+    </div>
+  <div class="form-group">
+    <label class="col-form-label">Informe o nome do veiculo :</label>
+    <input type="text" class="form-control" [(ngModel)]="nomeveiculo" (focus)="veiculoCadastrado = false"/>
+  </div>
+  <button class="btn btn-primary btn-block" (click)="salvarVeiculo()">Clique cadastrar novo veículo</button>
+  <hr>
+  <br>
+
+
+  <h5>Exibindo condicionalmente com as diretivas hidden</h5>
+  <div class="alert alert-success" role="alert" [hidden]="!marcaCadastrada">
+      Marca cadastrada:
+      <strong>{{ marcaveiculo }}</strong>
+    </div>
+  <div class="form-group">
+    <label class="col-form-label">Informe a marca do veiculo :</label>
+    <input type="text" class="form-control" [(ngModel)]="marcaveiculo" (focus)="marcaCadastrada = false"/>
+  </div>
+  <button class="btn btn-primary btn-block" (click)="salvarMarca()">Clique cadastrar nova marca</button>
+  <hr>
+  <br>
+
+  <!-- CADASTRO DE USUÁRIOS -->
+
+  <h5>Iterando com a diretiva ngFor</h5>
+
+  <div class="form-group">
+    <label class="col-form-label">Nome do usuário :</label>
+    <input type="text" class="form-control" [(ngModel)]="nomeFuncionario"/>
+  </div>
+
+  <button class="btn btn-primary" (click)="adicionar()" [disabled]="nomeFuncionario.length == 0">Clique cadastrar novo usuário</button>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-3" *ngFor="let funcionario of funcionarios">
+        <div class="card" style="margin-bottom: 20px;">
+            <img class="card-img-top" src="https://randomuser.me/api/portraits/women/{{funcionario.id}}.jpg" alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{funcionario.nomeFuncionario}}</h4>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+
+    <!-- CADASTRO DE USUÁRIOS MODEL BINDING -->
+    <app-funcionario-card [cliente]="cliente"></app-funcionario-card>
+
+    <!-- Binding de eventos customizados com @Output e EventEmitter -->
+    <app-funcionario-form (vendedorAdicionado)="aoAdicionar($event)"></app-funcionario-form>
+
+</div>
